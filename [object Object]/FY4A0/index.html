@@ -14,7 +14,7 @@
   <link href='http://cdn.repository.webfont.com/webfonts/nomal/137173/28818/5e8837fff629d803ac2ef4dd.css' rel='stylesheet' type='text/css' />
   <title>
     
-      博客搭建更新记录 | E-CHAR-LEE
+      【FY4A】 0x00 前序背景 | E-CHAR-LEE
     
   </title>
   <meta name="author" content="Darj Lin">
@@ -96,7 +96,7 @@
 	<!-- Page title -->
 	<p>
 		
-			「博客搭建更新记录」
+			「【FY4A】 0x00 前序背景」
 		
 	</p>
 
@@ -194,8 +194,8 @@
 	<div id="layout-post">
 		<div class="article-title">
 			
-	<a href="/%5Bobject%20Object%5D/updates/" itemprop="url">
-		博客搭建更新记录
+	<a href="/%5Bobject%20Object%5D/FY4A0/" itemprop="url">
+		【FY4A】 0x00 前序背景
 	</a>
 
 		</div>
@@ -211,9 +211,9 @@
 
 	更新于
 
-	<a href="/%5Bobject%20Object%5D/updates/" itemprop="url">
-		<time datetime="2020-03-19T08:17:08.000Z" itemprop="dateUpdated">
-	  		2020-04-05
+	<a href="/%5Bobject%20Object%5D/FY4A0/" itemprop="url">
+		<time datetime="2020-04-06T03:35:26.000Z" itemprop="dateUpdated">
+	  		2020-04-06
 	  </time>
 	</a> 
 
@@ -224,8 +224,8 @@
 				
 	<i class="icon-price-tags"></i>
 	
-		<a href="/tags/hexo/" class=" ">
-			hexo
+		<a href="/tags/Introduction-FengYun-4A/" class=" ">
+			Introduction/FengYun-4A
 		</a>
 	
 		
@@ -238,32 +238,143 @@
 		</div>
 
 		<div class="article-content" id="article-content">
-			<h4 id="搭建更新记录"><a href="#搭建更新记录" class="headerlink" title="搭建更新记录"></a>搭建更新记录</h4><p>2020-02-03 <a href="dcc.godaddy.com/">购买域名</a></p>
-<p>2020-03-04 <a href="bwh88.net/">重新购买VPS</a></p>
-<p>2020-03-13 树莓派做主机</p>
-<p>2020-03-16 测试生成文档</p>
-<p>2020-03-19 修改主题</p>
-<ol>
-<li>找到目标主题</li>
-<li>切换到博客根目录，git clone</li>
-<li>在博客根目录的_config.yml里theme字段进行配置</li>
-</ol>
-<p>2020-03-19  设置分类+标签</p>
-<ol>
-<li>新建分类页、标签页:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure></li>
-<li>在新建的特定页中的index中加入categories，layout等标志</li>
-</ol>
-<p>2020-03-28</p>
-<ol>
-<li>调整主题（Current：Annie）</li>
-<li>增加icon</li>
-<li>增加主页图</li>
-</ol>
-<p>2020-04-04<br>修改主题：字体（改为常见字体）</p>
+			<p>本篇介绍了有关风云四号卫星（FengYun-4，FY-4）的一些研究必备基础知识，了解这些对获取、理解及处理相关数据有一定的帮助。</p>
+<h3 id="卫星简介"><a href="#卫星简介" class="headerlink" title="卫星简介"></a>卫星简介</h3><p>风云四号卫星是我国第二代静止轨道遥感气象卫星，是从风云二号系列卫星（FengYun-2，FY-2）的基础上发展而来。无论是卫星的时间分辨率，还是卫星上搭载的各类传感器，相比于目前（2020-04）在轨的FY-2G/H卫星，FY-4A都有着显著的增强。这为后续的四号系列卫星发展奠定了良好的基础。<sup>1-3</sup></p>
+<blockquote>
+<p>主要发展目标是：卫星姿态稳定方式为三轴稳定，提高观测的时间分辨率和区域机动探测能力；提高扫描成像仪性能，以加强中小尺度天气系统的监测能力；发展大气垂直探测和微波探测，解决高轨三维遥感；发展极紫外和X射线太阳观测，加强空间天气监测预警。风云四号卫星计划发展光学和微波两种类型的卫星<sup>2</sup>。</p>
+</blockquote>
+<p>与此前研究类似，我的关注重点是搭载在FY-4A上的AGRI（Advanced Geostationary Radiation Imager，多通道扫描成像辐射计）。这是一颗各方面性能向MSG-SEVIRI<sup>4,5</sup>（Spinning Enhanced Visible and InfraRed Imager，旋转增强型可见光及红外线成像辐射计）和Himawari-8/9-AHI(Advanced Himawari Imager，向日葵增强绘图仪)<sup>6</sup>看齐乃至更强的传感器。</p>
+<table>
+<thead>
+<tr>
+<th align="center">Satellites</th>
+<th align="center">FY-2F/G/H VISSR</th>
+<th align="center">FY-4A AGRI</th>
+<th align="center">MSG-2 SEVIRI</th>
+<th align="center">Himawari-8/9 AHI</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Ch-Numbers</td>
+<td align="center">5 bands</td>
+<td align="center">14 bands</td>
+<td align="center">12 bands</td>
+<td align="center">16 bands</td>
+</tr>
+<tr>
+<td align="center">Ch-VIS&amp;NIR</td>
+<td align="center">1 (pan)</td>
+<td align="center">3 (RGB)</td>
+<td align="center">3 (R,IR,pan)</td>
+<td align="center">4 (RGB,IR)</td>
+</tr>
+<tr>
+<td align="center">Ch-SWIR</td>
+<td align="center">-</td>
+<td align="center">3</td>
+<td align="center">1</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td align="center">Ch-MIR(3-4 um)</td>
+<td align="center">1</td>
+<td align="center">2 (H/L)</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">Ch-WV</td>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">3</td>
+</tr>
+<tr>
+<td align="center">Ch-TIR(&gt;8 um)</td>
+<td align="center">2</td>
+<td align="center">4</td>
+<td align="center">5</td>
+<td align="center">6</td>
+</tr>
+<tr>
+<td align="center">Spatial Res (km)</td>
+<td align="center">1.25/5</td>
+<td align="center">1-4(0.5@R)</td>
+<td align="center">3@nadir(1@pan)</td>
+<td align="center">1-2(0.5@R)</td>
+</tr>
+<tr>
+<td align="center">Temporal Res</td>
+<td align="center">1 hr</td>
+<td align="center">15 mins</td>
+<td align="center">15 mins</td>
+<td align="center">10 mins</td>
+</tr>
+</tbody></table>
+<p>更多的内容可以参考相应的参考资料和研究论文（推荐参考世界气象组织WMO的<a href="https://www.wmo-sat.info/oscar/instruments/view/275" target="_blank" rel="noopener">网站</a>）。</p>
+<h3 id="数据获取"><a href="#数据获取" class="headerlink" title="数据获取"></a>数据获取</h3><p>目前风云卫星数据服务网<sup>7</sup>（下指网站）是获取全系列风云卫星数据的正式途径。要获得下载数据的权限，首先需要在网站上进行注册，注册后通过检索所需数据、提交订单至服务器、等待服务器分发等步骤才可以得到最终的数据。过程和NASA/MODIS、USGS/Landsat等常见卫星数据下载方式类似，但是这里注册时需要诸多审核过程，提交订单至服务器后通常需要等待2小时左右才能下载，这些都对初次使用者增加了不少麻烦。下载时会根据你提交的订单分配相应的FTP服务（速度很快），可惜除此之外并没有提供api接口，因此利用代码进行批量下载的方式可能会需要花费更大的努力。</p>
+<h3 id="数据等级分类"><a href="#数据等级分类" class="headerlink" title="数据等级分类"></a>数据等级分类</h3><p>FY-4A数据遵循分级数据的规范，网站中对AGRI数据提供详细的分级后各类数据的搜索和下载指示。其中L1数据为包含定标信息的原始数据，L2数据为基于L1数据处理后的到的各类相关产品。</p>
+<blockquote>
+<p>本数据集描述的是多通道扫描成像辐射计0级源包数据经过质量检验、地理定位、辐射定标处理后得到的预处理产品。<sup>8</sup><br>FY-4A中包括快速大气订正(ACI)、大气运动矢量(AMV)、对流初生实时产品(CIX)、云检测(CLM)、云相态(CLP)、云类型(CLT)、云顶高度(CTH)、云顶气压(CTP)、云顶温度(CTT)、地表下行长波辐射(DLR)、沙尘检测(DSD)、热源点检测(FHS)、雾监测 (FOG)、大气水汽总量及分层水汽含量(LPW)、地表比辐射率实时产品(LSE)、陆表温度(LST)、射出长波辐射(OLR)、降水估计(QPE)、反射短波辐射实时产品(RSR)、地面入射太阳辐射(SSI)、海表温度(SST)、对流层顶折叠检测(TFP)以及地表上行长波辐射(ULR)<sup>7</sup>。</p>
+</blockquote>
+<p>空间尺度上，AGRI数据包含全圆盘和中国区域的两类。目前FY-4A取代FY-2G，为气象观测的主业务卫星，其定点的位置为105°E赤道上空，因而获取的全圆盘也是以此为中心的数据。<br><img src="http://img.nsmc.org.cn/CLOUDIMAGE/FY4A/MTCC/FY4A_DISK.JPG" alt="NSMC-FY4A-AGRI"></p>
+<h3 id="数据检索"><a href="#数据检索" class="headerlink" title="数据检索"></a>数据检索</h3><p>如前所述，FY-4A目前共有L1级别的10个数据集、L2L3级别的38个数据集，每种空间尺度下的产品一一对应，介绍时以全圆盘数据为例，中国区域附带说明。<br>L1级别数据以HDF5格式存储，文件名形如下，其中内容参考附表：<br><code>FY4A-_AGRI--*[LOC]*_1047E_[LEVEL]-*[TYPE]*-_MULT_NOM_*[YYYYMMDDhhmmss1]*_*[YYYYMMDDhhmmss2]*_*[SPATIAL]*_*[VERSION]*.HDF</code></p>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Meaning</th>
+<th align="left">Args</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">FY4A-_AGRI</td>
+<td align="left">卫星和传感器名称</td>
+<td align="left">–</td>
+</tr>
+<tr>
+<td align="left">LOC</td>
+<td align="left">影像包含区域</td>
+<td align="left">N_DISK ; N_REGC（中国）</td>
+</tr>
+<tr>
+<td align="left">LEVEL</td>
+<td align="left">数据级别</td>
+<td align="left">L1</td>
+</tr>
+<tr>
+<td align="left">TYPE<sup>*</sup></td>
+<td align="left">数据类型</td>
+<td align="left">FDI ; GEO（几何定位）</td>
+</tr>
+<tr>
+<td align="left">YYYYMMDDhhmmss1/2</td>
+<td align="left">起止时间</td>
+<td align="left">–</td>
+</tr>
+<tr>
+<td align="left">SPATIAL</td>
+<td align="left">空间分辨率</td>
+<td align="left">0500M,1000M,2000M,4000M</td>
+</tr>
+<tr>
+<td align="left">VERSION</td>
+<td align="left">数据版本号</td>
+<td align="left">目前V0001</td>
+</tr>
+</tbody></table>
+<p>*考虑到_静止_轨道卫星实际意义，使用的定位文件为单独下载（即与观测时间无关），下载的文件名为“Loc_Grid_Spatial.raw.gz”<br>L2L3级别数据以netCDF格式存储，文件名形同上，差异在于Level为L2，数据类型也相应不同。</p>
 <hr>
-<h4 id="曾经出现的问题"><a href="#曾经出现的问题" class="headerlink" title="曾经出现的问题"></a>曾经出现的问题</h4><ol>
-<li><a href="/%5Bobject%20Object%5D/QA1HEXO/" title="已安装npm和node，但在命令行输入没有反应">已安装npm和node，但在命令行输入没有反应</a></li>
-<li><a href="/%5Bobject%20Object%5D/QA2HEXO/" title="如何修改Hexo主题字体">如何修改Hexo主题字体</a></li>
+<p><em>References</em></p>
+<ol>
+<li><a href="http://www.nsmc.org.cn/newsite/nsmc/channels/100376.html" target="_blank" rel="noopener">国家卫星气象中心-风云四号，web</a></li>
+<li><a href="http://www.nsmc.org.cn/newsite/nsmc/channels/fy4a_agri.html" target="_blank" rel="noopener">多通道扫描成像辐射计(AGRI)，web</a></li>
+<li><a href="http://fy4.nsmc.org.cn/nsmc/cn/satellite/FY4.html" target="_blank" rel="noopener">国家卫星气象中心 | 国家空间天气监测预警中心-风云四号，web</a></li>
+<li><a href="http://www.iarrp.cn/Upload/Files/NewsAttatches/12663/An%20improved%20algorithm%20for%20retrieving%20land%20surface%20emissivity%20and%20temperature%20from%20MSG-2SEVIRI%20data.-.20141225173656.pdf" target="_blank" rel="noopener">An Improved Algorithm for Retrieving Land Surface Emissivity and Temperature From MSG-2/SEVIRI Data, journal, <strong>IEEE-TGRS</strong>, 2014</a></li>
+<li><a href="http://www.esa.int/esapub/bulletin/bullet111/chapter4_bul111.pdf" target="_blank" rel="noopener">MSG’s SEVIRI Instrument, document</a></li>
+<li><a href="http://www.data.jma.go.jp/mscweb/en/himawari89/space_segment/spsg_ahi.html" target="_blank" rel="noopener">Meteorological Satellite Center of JMA-Himawari, web</a></li>
+<li><a href="http://satellite.nsmc.org.cn/portalsite/default.aspx" target="_blank" rel="noopener">风云卫星数据服务网，web</a></li>
+<li><a href="http://satellite.nsmc.org.cn/PortalSite/StaticContent/FileDownload.aspx?CategoryID=1&LinkID=304" target="_blank" rel="noopener">FY-4A成像仪L1_1KM数据格式说明, document</a></li>
 </ol>
 	
 		</div>
@@ -283,12 +394,12 @@
 	<span>
 		<a id="totop-post-page">返回顶部</a>
 		
-			<a href="/%5Bobject%20Object%5D/QA1HEXO/" title="已安装npm和node，但在命令行输入没有反应" rel="prev">
+			<a href="/%5Bobject%20Object%5D/FY4A1/" title="【FY4A】 0x01 数据预处理-1" rel="prev">
 				&laquo;上一篇
 			</a>
 		
 		
-			<a href="/%5Bobject%20Object%5D/New/" title="New" rel="next">
+			<a href="/%5Bobject%20Object%5D/QA2HEXO/" title="如何修改Hexo主题的字体" rel="next">
 				下一篇&raquo;
 			</a>
 			
@@ -309,57 +420,6 @@
 			
 					<li>
 						<div class="relate-post-text">
-							<a class="relate-post-title" href="/%5Bobject%20Object%5D/QA1HEXO/" title="已安装npm和node，但在命令行输入没有反应">
-								已安装npm和node，但在命令行输入没有反应			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								三月 28日, 2020				
-							</p>
-							<p class="relate-post-content">
-								我的hexo本地服务器是一块树莓派，系统是Linux raspberrypi 4.19.97-v7l+，系统默认是带有git，npm和node的。但是我发现第一次通过npm安装hexo的时候居然失败了，于是我决定卸载后重装。结果再重新...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/%5Bobject%20Object%5D/QA1HEXO/" title="已安装npm和node，但在命令行输入没有反应">				
-								
-								<img class="lazy" src="/img/lazy.gif" data-src="/img/none.jpg" alt="已安装npm和node，但在命令行输入没有反应"/>
-							</a>
-						</div>
-					</li>												
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/%5Bobject%20Object%5D/New/" title="New">
-								New			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								三月 16日, 2020				
-							</p>
-							<p class="relate-post-content">
-								尝试一点新内容！在vps的ip被封之后（换了ip又被封了），终于选择了域名+github pages了。博客打算按照每周末更新的进度，更新内容包括：
-
-博客框架更新
-树莓派应用更新
-专业学习技能更新
-阅读书籍更新
-阅读文献及翻译更新
-...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/%5Bobject%20Object%5D/New/" title="New">				
-								
-								<img class="lazy" src="/img/lazy.gif" data-src="/img/none.jpg" alt="New"/>
-							</a>
-						</div>
-					</li>												
-			
-					<li>
-						<div class="relate-post-text">
 							<a class="relate-post-title" href="/%5Bobject%20Object%5D/FY4A1/" title="【FY4A】 0x01 数据预处理-1">
 								【FY4A】 0x01 数据预处理-1			
 							</a>
@@ -377,29 +437,6 @@
 							<a href="/%5Bobject%20Object%5D/FY4A1/" title="【FY4A】 0x01 数据预处理-1">				
 								
 								<img class="lazy" src="/img/lazy.gif" data-src="/img/none.jpg" alt="【FY4A】 0x01 数据预处理-1"/>
-							</a>
-						</div>
-					</li>												
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/%5Bobject%20Object%5D/FY4A0/" title="【FY4A】 0x00 前序背景">
-								【FY4A】 0x00 前序背景			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								四月 6日, 2020				
-							</p>
-							<p class="relate-post-content">
-								本篇介绍了有关风云四号卫星（FengYun-4，FY-4）的一些研究必备基础知识，了解这些对获取、理解及处理相关数据有一定的帮助。
-卫星简介风云四号卫星是我国第二代静止轨道遥感气象卫星，是从风云二号系列卫星（FengYun-2，FY-...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/%5Bobject%20Object%5D/FY4A0/" title="【FY4A】 0x00 前序背景">				
-								
-								<img class="lazy" src="/img/lazy.gif" data-src="/img/none.jpg" alt="【FY4A】 0x00 前序背景"/>
 							</a>
 						</div>
 					</li>												
@@ -446,6 +483,86 @@
 							<a href="/%5Bobject%20Object%5D/ssd-1/" title="【深度学习】 0x01：tensorflow2.0框架+SSD+Examples">				
 								
 								<img class="lazy" src="/img/lazy.gif" data-src="/img/none.jpg" alt="【深度学习】 0x01：tensorflow2.0框架+SSD+Examples"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/%5Bobject%20Object%5D/QA1HEXO/" title="已安装npm和node，但在命令行输入没有反应">
+								已安装npm和node，但在命令行输入没有反应			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								三月 28日, 2020				
+							</p>
+							<p class="relate-post-content">
+								我的hexo本地服务器是一块树莓派，系统是Linux raspberrypi 4.19.97-v7l+，系统默认是带有git，npm和node的。但是我发现第一次通过npm安装hexo的时候居然失败了，于是我决定卸载后重装。结果再重新...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/%5Bobject%20Object%5D/QA1HEXO/" title="已安装npm和node，但在命令行输入没有反应">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/none.jpg" alt="已安装npm和node，但在命令行输入没有反应"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/%5Bobject%20Object%5D/updates/" title="博客搭建更新记录">
+								博客搭建更新记录			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								三月 19日, 2020				
+							</p>
+							<p class="relate-post-content">
+								搭建更新记录2020-02-03 购买域名
+2020-03-04 重新购买VPS
+2020-03-13 树莓派做主机
+2020-03-16 测试生成文档
+2020-03-19 修改主题
+
+找到目标主题
+切换到博客根目录，git clo...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/%5Bobject%20Object%5D/updates/" title="博客搭建更新记录">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/none.jpg" alt="博客搭建更新记录"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/%5Bobject%20Object%5D/New/" title="New">
+								New			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								三月 16日, 2020				
+							</p>
+							<p class="relate-post-content">
+								尝试一点新内容！在vps的ip被封之后（换了ip又被封了），终于选择了域名+github pages了。博客打算按照每周末更新的进度，更新内容包括：
+
+博客框架更新
+树莓派应用更新
+专业学习技能更新
+阅读书籍更新
+阅读文献及翻译更新
+...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/%5Bobject%20Object%5D/New/" title="New">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/none.jpg" alt="New"/>
 							</a>
 						</div>
 					</li>												

@@ -14,7 +14,7 @@
   <link href='http://cdn.repository.webfont.com/webfonts/nomal/137173/28818/5e8837fff629d803ac2ef4dd.css' rel='stylesheet' type='text/css' />
   <title>
     
-      Hello World | E-CHAR-LEE
+      【FY4A】 0x01 数据预处理-1 | E-CHAR-LEE
     
   </title>
   <meta name="author" content="Darj Lin">
@@ -96,7 +96,7 @@
 	<!-- Page title -->
 	<p>
 		
-			「Hello World」
+			「【FY4A】 0x01 数据预处理-1」
 		
 	</p>
 
@@ -194,8 +194,8 @@
 	<div id="layout-post">
 		<div class="article-title">
 			
-	<a href="/%5Bobject%20Object%5D/hello-world/" itemprop="url">
-		Hello World
+	<a href="/%5Bobject%20Object%5D/FY4A1/" itemprop="url">
+		【FY4A】 0x01 数据预处理-1
 	</a>
 
 		</div>
@@ -211,9 +211,9 @@
 
 	更新于
 
-	<a href="/%5Bobject%20Object%5D/hello-world/" itemprop="url">
-		<time datetime="2020-03-16T11:23:51.747Z" itemprop="dateUpdated">
-	  		2020-03-28
+	<a href="/%5Bobject%20Object%5D/FY4A1/" itemprop="url">
+		<time datetime="2020-04-06T09:35:26.000Z" itemprop="dateUpdated">
+	  		2020-04-06
 	  </time>
 	</a> 
 
@@ -221,7 +221,14 @@
 
 			</span>
 			<span>
-						
+				
+	<i class="icon-price-tags"></i>
+	
+		<a href="/tags/Dataprocessing-FengYun-4A/" class=" ">
+			Dataprocessing/FengYun-4A
+		</a>
+	
+		
 			</span>
 			
 			
@@ -231,19 +238,28 @@
 		</div>
 
 		<div class="article-content" id="article-content">
-			<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+			<p>本篇将主要介绍FY-4A AGRI传感器L1/L2数据的预处理操作，目标是对实现原始的hdf或者nc格式数据进行读取、定标的操作。为了方便介绍，这里主要借助python 3.x 语言进行操作，所需要的依赖包为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os, glob, gdal, sys</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> netCDF4 <span class="keyword">as</span> nc</span><br><span class="line"><span class="keyword">import</span> h5py</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h3 id="数据读取"><a href="#数据读取" class="headerlink" title="数据读取"></a>数据读取</h3><p>如FY-4前序背景中介绍的那样，尽管FY-4A AGRI数据在各方面性能上显著优于FY-2 S-VISSR，数据的设置仍然保持着高度的一致性，这为数据的读取和分析降低了难度。FY-2 S-VISSR的波段信息数据存储在前缀为NOM的数据集中，可以通过GDAL包进行读取。但对FY-4数据，一个诡异的问题是，GDAL包仅能读取的9个子数据集（本例中为2000m分辨率遥感影像，输出如下），这些内容并不完整，缺少了关键的定标信息，这使得我们需要借助读写hdf/netCDF格式的包来进行解译。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[(<span class="string">'HDF5:"F:/FY-4/L1\\FY4A-_AGRI--_N_DISK_1047E_L1-_FDI-_MULT_NOM_20190304000000_20190304001459_2000M_V0001.HDF"://CALIBRATION_COEF(SCALE+OFFSET)'</span>, <span class="string">'[7x2] //CALIBRATION_COEF(SCALE+OFFSET) (32-bit floating-point)'</span>),</span><br><span class="line"> (<span class="string">'HDF5:"F:/FY-4/L1\\FY4A-_AGRI--_N_DISK_1047E_L1-_FDI-_MULT_NOM_20190304000000_20190304001459_2000M_V0001.HDF"://NOMChannel01'</span>, <span class="string">'[5496x5496] //NOMChannel01 (16-bit unsigned integer)'</span>),</span><br><span class="line"> (<span class="string">'HDF5:"F:/FY-4/L1\\FY4A-_AGRI--_N_DISK_1047E_L1-_FDI-_MULT_NOM_20190304000000_20190304001459_2000M_V0001.HDF"://NOMChannel02'</span>,</span><br><span class="line">  <span class="string">'[5496x5496] //NOMChannel02 (16-bit unsigned integer)'</span>),</span><br><span class="line"> (<span class="string">'HDF5:"F:/FY-4/L1\\FY4A-_AGRI--_N_DISK_1047E_L1-_FDI-_MULT_NOM_20190304000000_20190304001459_2000M_V0001.HDF"://NOMChannel03'</span>,</span><br><span class="line">  <span class="string">'[5496x5496] //NOMChannel03 (16-bit unsigned integer)'</span>),</span><br><span class="line"> (<span class="string">'HDF5:"F:/FY-4/L1\\FY4A-_AGRI--_N_DISK_1047E_L1-_FDI-_MULT_NOM_20190304000000_20190304001459_2000M_V0001.HDF"://NOMChannel04'</span>,</span><br><span class="line">  <span class="string">'[5496x5496] //NOMChannel04 (16-bit unsigned integer)'</span>),</span><br><span class="line"> (<span class="string">'HDF5:"F:/FY-4/L1\\FY4A-_AGRI--_N_DISK_1047E_L1-_FDI-_MULT_NOM_20190304000000_20190304001459_2000M_V0001.HDF"://NOMChannel05'</span>,</span><br><span class="line">  <span class="string">'[5496x5496] //NOMChannel05 (16-bit unsigned integer)'</span>),</span><br><span class="line"> (<span class="string">'HDF5:"F:/FY-4/L1\\FY4A-_AGRI--_N_DISK_1047E_L1-_FDI-_MULT_NOM_20190304000000_20190304001459_2000M_V0001.HDF"://NOMChannel06'</span>,</span><br><span class="line">  <span class="string">'[5496x5496] //NOMChannel06 (16-bit unsigned integer)'</span>),</span><br><span class="line"> (<span class="string">'HDF5:"F:/FY-4/L1\\FY4A-_AGRI--_N_DISK_1047E_L1-_FDI-_MULT_NOM_20190304000000_20190304001459_2000M_V0001.HDF"://NOMChannel07'</span>,</span><br><span class="line">  <span class="string">'[5496x5496] //NOMChannel07 (16-bit unsigned integer)'</span>),</span><br><span class="line"> (<span class="string">'HDF5:"F:/FY-4/L1\\FY4A-_AGRI--_N_DISK_1047E_L1-_FDI-_MULT_NOM_20190304000000_20190304001459_2000M_V0001.HDF"://NOMObsColumn'</span>,</span><br><span class="line">  <span class="string">'[5496x2] //NOMObsColumn (16-bit integer)'</span>)]</span><br></pre></td></tr></table></figure>
+<p>而如果借助h5py和netCDF4读取文件，可以得到的数据集包括如下（共23个，除多了定标矫正的信息外，数目与官网提供的帮助文档中数据集数目一致）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">'CALChannel01'</span>, <span class="string">'CALChannel02'</span>, <span class="string">'CALChannel03'</span>, <span class="string">'CALChannel04'</span>, <span class="string">'CALChannel05'</span>, <span class="string">'CALChannel06'</span>, <span class="string">'CALChannel07'</span>, <span class="string">'CALIBRATION_COEF(SCALE+OFFSET)'</span>, <span class="string">'CalQualityFlag'</span>, <span class="string">'L0QualityFlag'</span>, <span class="string">'NOMChannel01'</span>, <span class="string">'NOMChannel02'</span>, <span class="string">'NOMChannel03'</span>, <span class="string">'NOMChannel04'</span>, <span class="string">'NOMChannel05'</span>, <span class="string">'NOMChannel06'</span>, <span class="string">'NOMChannel07'</span>, <span class="string">'NOMObsColumn'</span>, <span class="string">'NOMObsTime'</span>, <span class="string">'PosQualityFlag'</span>, <span class="string">'VerSoftMTF'</span>, <span class="string">'VerSoftNR'</span>, <span class="string">'VerSoftStrayLight'</span>]</span><br></pre></td></tr></table></figure>
+<p>因此考虑以此方法进行后续的操作。<br>为了方便后续操作，这里用一个<code>fengyun4L1</code>的类进行封装。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">fengyun4L1</span>:</span></span><br><span class="line">    ...</span><br><span class="line">    ...                 </span><br><span class="line">    <span class="comment"># 获取所有可用的数据集</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">availableDatasets</span><span class="params">(self, getValue=False)</span>:</span>     </span><br><span class="line">        <span class="keyword">if</span> getValue:</span><br><span class="line">            <span class="keyword">return</span> list(self.h.keys())</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">for</span> key <span class="keyword">in</span> self.h.keys():</span><br><span class="line">                print(key)</span><br><span class="line">                </span><br><span class="line">    <span class="comment"># 通过得到的数据集名称列表，进行进一步的数据获取</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getDatasets</span><span class="params">(self, key)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.h[key][()]</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="数据定标"><a href="#数据定标" class="headerlink" title="数据定标"></a>数据定标</h3><p>类似的，在定标上我们还是可以借鉴FY-2数据的处理方法：通过前缀为CAL的数据集中的定标表来进行定标<sup>1</sup>。</p>
+<blockquote>
+<p>VISSR中5个图像数据层存储的DN值，是不具有物理意义的一系列指数，其值域范围与对应通道定标表的一维数组长度一致。指数0对应定标表的第1个数值，指数为1对应定标表中第2个数值，以此类推。红外通道的指域范围为0-1023个数值，可见光通道的指数值域范围为0-63。影像中对应于非地表区域记录的数值以65535进行填充。定标表数组内的数值为定标后红外通道亮温（或反射率）。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">fengyun4L1</span>:</span></span><br><span class="line">   ...</span><br><span class="line">   ...   </span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">cal_values_from_channel</span><span class="params">(self, channel, IR=False, showprocess=False)</span>:</span></span><br><span class="line">       <span class="string">'''</span></span><br><span class="line"><span class="string">       cal_name: Name of calibration index from L1 data(could be acquired from Func:getDatasets)</span></span><br><span class="line"><span class="string">       data_name: Name of data need to be transformed from DN to physical quantity</span></span><br><span class="line"><span class="string">       '''</span></span><br><span class="line">       <span class="comment"># 读取对应波段数据的名称</span></span><br><span class="line">       cal_name, data_name = <span class="string">'CALChannel'</span> + str(channel).zfill(<span class="number">2</span>), <span class="string">'NOMChannel'</span> + str(channel).zfill(<span class="number">2</span>) </span><br><span class="line"></span><br><span class="line">       cal_index = self.getDatasets(cal_name)</span><br><span class="line">       data_array = self.getDatasets(data_name)</span><br><span class="line"></span><br><span class="line">       <span class="comment"># 判断是哪一类数据，红外通道和可见光/近红通道的定标表量化等级不同</span></span><br><span class="line">       IR = channel <span class="keyword">in</span> fengyun4L1.irbands        </span><br><span class="line">       out_data = []</span><br><span class="line">       <span class="keyword">for</span> _ <span class="keyword">in</span> range(data_array.shape[<span class="number">1</span>]):            </span><br><span class="line">           map_data = self.__cal_values_IR(self, cal_index, data_array[:, _]) <span class="keyword">if</span> IR <span class="keyword">else</span> self.__cal_values_vis(self, cal_index, data_array[:, _])</span><br><span class="line">           out_data.append(map_data)</span><br><span class="line">           <span class="keyword">if</span> showprocess: self.__drawprogress(self, _, data_array.shape[<span class="number">1</span>])</span><br><span class="line">       <span class="keyword">return</span> np.array(out_data)</span><br><span class="line">   </span><br><span class="line"><span class="meta">   @staticmethod</span></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">__cal_values_IR</span><span class="params">(self, cal_index, arr)</span>:</span>        </span><br><span class="line">       map_data = list(map(<span class="keyword">lambda</span> x: cal_index[x], arr))</span><br><span class="line">       <span class="keyword">return</span> map_data</span><br><span class="line">   </span><br><span class="line"><span class="meta">   @staticmethod</span></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">__cal_values_vis</span><span class="params">(self, cal_index, arr)</span>:</span>    </span><br><span class="line">       map_data = list(map(<span class="keyword">lambda</span> x: cal_index[x] <span class="keyword">if</span> x &lt; <span class="number">65535</span> <span class="keyword">else</span> <span class="number">65535</span>, arr))</span><br><span class="line">       <span class="keyword">return</span> map_data   </span><br><span class="line">   ...</span><br><span class="line">   ...</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p><img src="https://img9.doubanio.com/view/photo/l/public/p2594529494.webp" alt="调用后的结果如图"></p>
+<hr>
+<p><em>Reference</em></p>
+<ol>
+<li><a href="https://ieeexplore.ieee.org/document/8770270" target="_blank" rel="noopener">A Contextual and Multitemporal Active-Fire Detection Algorithm Based on FengYun-2G S-VISSR Data, journal, <strong>IEEE-TGRS</strong>, 2019</a></li>
+</ol>
 	
 		</div>
 		
@@ -262,10 +278,10 @@
 	<span>
 		<a id="totop-post-page">返回顶部</a>
 		
-			<a href="/%5Bobject%20Object%5D/New/" title="New" rel="prev">
-				&laquo;上一篇
-			</a>
 		
+			<a href="/%5Bobject%20Object%5D/FY4A0/" title="【FY4A】 0x00 前序背景" rel="next">
+				下一篇&raquo;
+			</a>
 			
 	</span>
 
@@ -281,58 +297,6 @@
 <div class="relate-post">
 	
 		<ul>
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/%5Bobject%20Object%5D/New/" title="New">
-								New			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								三月 16日, 2020				
-							</p>
-							<p class="relate-post-content">
-								尝试一点新内容！在vps的ip被封之后（换了ip又被封了），终于选择了域名+github pages了。博客打算按照每周末更新的进度，更新内容包括：
-
-博客框架更新
-树莓派应用更新
-专业学习技能更新
-阅读书籍更新
-阅读文献及翻译更新
-...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/%5Bobject%20Object%5D/New/" title="New">				
-								
-								<img class="lazy" src="/img/lazy.gif" data-src="/img/none.jpg" alt="New"/>
-							</a>
-						</div>
-					</li>												
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/%5Bobject%20Object%5D/FY4A1/" title="【FY4A】 0x01 数据预处理-1">
-								【FY4A】 0x01 数据预处理-1			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								四月 6日, 2020				
-							</p>
-							<p class="relate-post-content">
-								本篇将主要介绍FY-4A AGRI传感器L1/L2数据的预处理操作，目标是对实现原始的hdf或者nc格式数据进行读取、定标的操作。为了方便介绍，这里主要借助python 3.x 语言进行操作，所需要的依赖包为：
-12345import...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/%5Bobject%20Object%5D/FY4A1/" title="【FY4A】 0x01 数据预处理-1">				
-								
-								<img class="lazy" src="/img/lazy.gif" data-src="/img/none.jpg" alt="【FY4A】 0x01 数据预处理-1"/>
-							</a>
-						</div>
-					</li>												
 			
 					<li>
 						<div class="relate-post-text">
@@ -450,6 +414,57 @@
 							<a href="/%5Bobject%20Object%5D/updates/" title="博客搭建更新记录">				
 								
 								<img class="lazy" src="/img/lazy.gif" data-src="/img/none.jpg" alt="博客搭建更新记录"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/%5Bobject%20Object%5D/New/" title="New">
+								New			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								三月 16日, 2020				
+							</p>
+							<p class="relate-post-content">
+								尝试一点新内容！在vps的ip被封之后（换了ip又被封了），终于选择了域名+github pages了。博客打算按照每周末更新的进度，更新内容包括：
+
+博客框架更新
+树莓派应用更新
+专业学习技能更新
+阅读书籍更新
+阅读文献及翻译更新
+...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/%5Bobject%20Object%5D/New/" title="New">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/none.jpg" alt="New"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/%5Bobject%20Object%5D/hello-world/" title="Hello World">
+								Hello World			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								三月 16日, 2020				
+							</p>
+							<p class="relate-post-content">
+								Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using ...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/%5Bobject%20Object%5D/hello-world/" title="Hello World">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/none.jpg" alt="Hello World"/>
 							</a>
 						</div>
 					</li>												

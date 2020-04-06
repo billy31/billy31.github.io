@@ -10,7 +10,8 @@
 <head>
 	<meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">  
+  <link href='http://cdn.repository.webfont.com/webfonts/nomal/137173/28818/5e8837fff629d803ac2ef4dd.css' rel='stylesheet' type='text/css' />
   <title>
     
       已安装npm和node，但在命令行输入没有反应 | E-CHAR-LEE
@@ -199,7 +200,7 @@
 
 	<a href="/%5Bobject%20Object%5D/QA1HEXO/" itemprop="url">
 		<time datetime="2020-03-28T10:19:59.000Z" itemprop="dateUpdated">
-	  		2020-03-28
+	  		2020-04-04
 	  </time>
 	</a> 
 
@@ -214,10 +215,6 @@
 			hexo
 		</a>
 	
-		<a href="/tags/once/" class=" ">
-			once
-		</a>
-	
 		
 			</span>
 			
@@ -228,7 +225,9 @@
 		</div>
 
 		<div class="article-content" id="article-content">
-			<p>我的hexo本地服务器是一块树莓派，系统是Linux raspberrypi 4.19.97-v7l+，系统默认是带有git，npm和node的。<br>但是我发现第一次通过npm安装hexo的时候居然失败了，于是我决定卸载后重装。<br>结果再重新安装的时候发现尽管已经输入了npm或者node，但系统始终无法找到此命令（无回馈），也并没有报错。<br>唯一可以通过linux系统“无返回即为正确”原则判断的是，npm和node已经成功安装，只是系统无法找到。<br>因此考虑通过如下命令将npm和node关联到系统中：<br><code>sudo ln -s /usr/local/bin/node   /bin/node</code><br>当然，遇到类似安装了多个python版本无法明确系统python版本的时候，也可以用这种方法进行解决。</p>
+			<p>我的hexo本地服务器是一块树莓派，系统是Linux raspberrypi 4.19.97-v7l+，系统默认是带有git，npm和node的。但是我发现第一次通过npm安装hexo的时候居然失败了，于是我决定卸载后重装。结果再重新安装的时候发现尽管已经输入了npm或者node，但系统始终无法找到此命令（无回馈），也并没有报错。唯一可以通过linux系统“无返回即为正确”原则判断的是，npm和node已经成功安装，只是系统无法找到。<br>因此考虑通过如下命令将npm和node关联到系统中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s /usr/<span class="built_in">local</span>/bin/node   /bin/node</span><br></pre></td></tr></table></figure>
+<p>当然，遇到类似安装了多个python版本无法明确系统python版本的时候，也可以用这种方法进行解决。</p>
 	
 		</div>
 		
@@ -246,6 +245,10 @@
 					
 	<span>
 		<a id="totop-post-page">返回顶部</a>
+		
+			<a href="/%5Bobject%20Object%5D/ssd-1/" title="【深度学习】 0x01：tensorflow2.0框架+SSD+Examples" rel="prev">
+				&laquo;上一篇
+			</a>
 		
 		
 			<a href="/%5Bobject%20Object%5D/updates/" title="博客搭建更新记录" rel="next">
@@ -266,6 +269,28 @@
 <div class="relate-post">
 	
 		<ul>
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/%5Bobject%20Object%5D/QA2HEXO/" title="如何修改Hexo主题的字体">
+								如何修改Hexo主题的字体			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								四月 4日, 2020				
+							</p>
+							<p class="relate-post-content">
+								网络上常见能搜到的修改Hexo字体教程多是基于NexT主题的（这个，或者这个），对于其他的主题有参考价值，但我在目前主题下做的类似尝试并没有成果。考虑到每个主题定制的内容都不太一样，选择、修改字体的方式也并不完全一致（类似的，现在在使...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/%5Bobject%20Object%5D/QA2HEXO/" title="如何修改Hexo主题的字体">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/none.jpg" alt="如何修改Hexo主题的字体"/>
+							</a>
+						</div>
+					</li>												
 			
 					<li>
 						<div class="relate-post-text">
@@ -306,7 +331,14 @@
 								三月 16日, 2020				
 							</p>
 							<p class="relate-post-content">
-								尝试一点新内容！在vps的ip被封之后（换了ip又被封了），终于选择了域名+github pages了。博客打算按照每周末更新的进度，更新内容包括： [ ] 博客框架更新 [ ] 树莓派应用更新 [ ] 专业学习技能更新 [ ] 阅读...
+								尝试一点新内容！在vps的ip被封之后（换了ip又被封了），终于选择了域名+github pages了。博客打算按照每周末更新的进度，更新内容包括：
+
+博客框架更新
+树莓派应用更新
+专业学习技能更新
+阅读书籍更新
+阅读文献及翻译更新
+...
 							</p>
 						</div>
 
@@ -314,6 +346,76 @@
 							<a href="/%5Bobject%20Object%5D/New/" title="New">				
 								
 								<img class="lazy" src="/img/lazy.gif" data-src="/img/none.jpg" alt="New"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/%5Bobject%20Object%5D/FY4A1/" title="【FY4A】 0x01 数据预处理-1">
+								【FY4A】 0x01 数据预处理-1			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								四月 6日, 2020				
+							</p>
+							<p class="relate-post-content">
+								本篇将主要介绍FY-4A AGRI传感器L1/L2数据的预处理操作，目标是对实现原始的hdf或者nc格式数据进行读取、定标的操作。为了方便介绍，这里主要借助python 3.x 语言进行操作，所需要的依赖包为：
+12345import...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/%5Bobject%20Object%5D/FY4A1/" title="【FY4A】 0x01 数据预处理-1">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/none.jpg" alt="【FY4A】 0x01 数据预处理-1"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/%5Bobject%20Object%5D/FY4A0/" title="【FY4A】 0x00 前序背景">
+								【FY4A】 0x00 前序背景			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								四月 6日, 2020				
+							</p>
+							<p class="relate-post-content">
+								本篇介绍了有关风云四号卫星（FengYun-4，FY-4）的一些研究必备基础知识，了解这些对获取、理解及处理相关数据有一定的帮助。
+卫星简介风云四号卫星是我国第二代静止轨道遥感气象卫星，是从风云二号系列卫星（FengYun-2，FY-...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/%5Bobject%20Object%5D/FY4A0/" title="【FY4A】 0x00 前序背景">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/none.jpg" alt="【FY4A】 0x00 前序背景"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/%5Bobject%20Object%5D/ssd-1/" title="【深度学习】 0x01：tensorflow2.0框架+SSD+Examples">
+								【深度学习】 0x01：tensorflow2.0框架+SSD+Examples			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								三月 31日, 2020				
+							</p>
+							<p class="relate-post-content">
+								
+出现的零星问题
+问题1：在调用matplotlib的时候居然出现了如下错误提示  ValueError: Only know how to handle extensions: [&#39;png&#39;]; with Pillo...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/%5Bobject%20Object%5D/ssd-1/" title="【深度学习】 0x01：tensorflow2.0框架+SSD+Examples">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/none.jpg" alt="【深度学习】 0x01：tensorflow2.0框架+SSD+Examples"/>
 							</a>
 						</div>
 					</li>												

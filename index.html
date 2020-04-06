@@ -10,7 +10,8 @@
 <head>
 	<meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">  
+  <link href='http://cdn.repository.webfont.com/webfonts/nomal/137173/28818/5e8837fff629d803ac2ef4dd.css' rel='stylesheet' type='text/css' />
   <title>
     
       E-CHAR-LEE
@@ -179,6 +180,214 @@
 				<div class="post-text">
 					<div class="post-title" id="post-title-index">			
 						
+	<a href="/%5Bobject%20Object%5D/FY4A1/" itemprop="url">
+		【FY4A】 0x01 数据预处理-1
+	</a>
+
+					</div>
+
+					<div class="post-content">
+						
+							本篇将主要介绍FY-4A AGRI传感器L1/L2数据的预处理操作，目标是对实现原始的hdf或者nc格式数据进行读取、定标的操作。为了方便介绍，这里主要借助python 3.x 语言进行操作，所需要的依赖包为：
+12345import os, glob, gdal, sysimport numpy as npimport matplotlib.pyplot as pltimport netCDF4 as ncimport h5py
+
+数据读取如FY-4前序背景中介绍的那样，尽管FY-4A AGRI数据在各方面性能上显著优于FY-2 S-VISSR，数据的设置仍然保持着高度的一致性，这为数...
+						
+					</div>
+					
+					<div class="post-meta">
+						<span>
+							发布于
+							<i>
+								
+
+
+
+
+
+
+	<a href="/%5Bobject%20Object%5D/FY4A1/" itemprop="url">
+		<time datetime="2020-04-06T09:35:26.000Z" itemprop="datePublished">
+	  		2020-04-06
+	  </time>
+	</a> 
+
+							</i>
+						</span>
+						
+						
+
+
+
+						
+							<span class="right">      	
+								<a href="/%5Bobject%20Object%5D/FY4A1/" title="阅读全文" external="false">阅读全文</a>	
+							</span>
+						
+					</div>
+				</div>
+			</div>
+		
+			<div class="post" id="post">
+				<div class="post-text">
+					<div class="post-title" id="post-title-index">			
+						
+	<a href="/%5Bobject%20Object%5D/FY4A0/" itemprop="url">
+		【FY4A】 0x00 前序背景
+	</a>
+
+					</div>
+
+					<div class="post-content">
+						
+							本篇介绍了有关风云四号卫星（FengYun-4，FY-4）的一些研究必备基础知识，了解这些对获取、理解及处理相关数据有一定的帮助。
+卫星简介风云四号卫星是我国第二代静止轨道遥感气象卫星，是从风云二号系列卫星（FengYun-2，FY-2）的基础上发展而来。无论是卫星的时间分辨率，还是卫星上搭载的各类传感器，相比于目前（2020-04）在轨的FY-2G/H卫星，FY-4A都有着显著的增强。这为后续的四号系列卫星发展奠定了良好的基础。1-3
+
+主要发展目标是：卫星姿态稳定方式为三轴稳定，提高观测的时间分辨率和区域机动探测能力；提高扫描成像仪性能，以加强中小尺度天气系统的监测能力；发展大气垂直...
+						
+					</div>
+					
+					<div class="post-meta">
+						<span>
+							发布于
+							<i>
+								
+
+
+
+
+
+
+	<a href="/%5Bobject%20Object%5D/FY4A0/" itemprop="url">
+		<time datetime="2020-04-06T03:35:26.000Z" itemprop="datePublished">
+	  		2020-04-06
+	  </time>
+	</a> 
+
+							</i>
+						</span>
+						
+						
+
+
+
+						
+							<span class="right">      	
+								<a href="/%5Bobject%20Object%5D/FY4A0/" title="阅读全文" external="false">阅读全文</a>	
+							</span>
+						
+					</div>
+				</div>
+			</div>
+		
+			<div class="post" id="post">
+				<div class="post-text">
+					<div class="post-title" id="post-title-index">			
+						
+	<a href="/%5Bobject%20Object%5D/QA2HEXO/" itemprop="url">
+		如何修改Hexo主题的字体
+	</a>
+
+					</div>
+
+					<div class="post-content">
+						
+							网络上常见能搜到的修改Hexo字体教程多是基于NexT主题的（这个，或者这个），对于其他的主题有参考价值，但我在目前主题下做的类似尝试并没有成果。考虑到每个主题定制的内容都不太一样，选择、修改字体的方式也并不完全一致（类似的，现在在使用的Annie主题，就可以很方便的通过修改主题下的_config.yml文件实现点击出现红心效果）。因此，实现修改Hexo各类主题下字体的最好方法无外乎两种：
+
+修改主题为NexT
+了解Hexo设计架构我属于比较懒的人，所以我选择…2。主要是考虑如果能够通过了解Hexo设计架构准确掌握关于此的很多知识，或许可以为了之后更多的定制节省时间（又或者什么时候能够自...
+						
+					</div>
+					
+					<div class="post-meta">
+						<span>
+							发布于
+							<i>
+								
+
+
+
+
+
+
+	<a href="/%5Bobject%20Object%5D/QA2HEXO/" itemprop="url">
+		<time datetime="2020-04-04T04:01:59.000Z" itemprop="datePublished">
+	  		2020-04-04
+	  </time>
+	</a> 
+
+							</i>
+						</span>
+						
+						
+
+
+
+						
+							<span class="right">      	
+								<a href="/%5Bobject%20Object%5D/QA2HEXO/" title="阅读全文" external="false">阅读全文</a>	
+							</span>
+						
+					</div>
+				</div>
+			</div>
+		
+			<div class="post" id="post">
+				<div class="post-text">
+					<div class="post-title" id="post-title-index">			
+						
+	<a href="/%5Bobject%20Object%5D/ssd-1/" itemprop="url">
+		【深度学习】 0x01：tensorflow2.0框架+SSD+Examples
+	</a>
+
+					</div>
+
+					<div class="post-content">
+						
+							
+出现的零星问题
+问题1：在调用matplotlib的时候居然出现了如下错误提示  ValueError: Only know how to handle extensions: [&#39;png&#39;]; with Pillow install  解决：补充安装pillow包 conda install pillow
+问题2：在尝试进行训练时出现了如下错误  tensorflow错误：“tensorflow.python.framework.errors_impl.ResourceExhaustedError: OOM when allocating tensor with sh...
+						
+					</div>
+					
+					<div class="post-meta">
+						<span>
+							发布于
+							<i>
+								
+
+
+
+
+
+
+	<a href="/%5Bobject%20Object%5D/ssd-1/" itemprop="url">
+		<time datetime="2020-03-31T11:01:14.000Z" itemprop="datePublished">
+	  		2020-03-31
+	  </time>
+	</a> 
+
+							</i>
+						</span>
+						
+						
+
+
+
+						
+							<span class="right">      	
+								<a href="/%5Bobject%20Object%5D/ssd-1/" title="阅读全文" external="false">阅读全文</a>	
+							</span>
+						
+					</div>
+				</div>
+			</div>
+		
+			<div class="post" id="post">
+				<div class="post-text">
+					<div class="post-title" id="post-title-index">			
+						
 	<a href="/%5Bobject%20Object%5D/QA1HEXO/" itemprop="url">
 		已安装npm和node，但在命令行输入没有反应
 	</a>
@@ -187,7 +396,9 @@
 
 					<div class="post-content">
 						
-							我的hexo本地服务器是一块树莓派，系统是Linux raspberrypi 4.19.97-v7l+，系统默认是带有git，npm和node的。但是我发现第一次通过npm安装hexo的时候居然失败了，于是我决定卸载后重装。结果再重新安装的时候发现尽管已经输入了npm或者node，但系统始终无法找到此命令（无回馈），也并没有报错。唯一可以通过linux系统“无返回即为正确”原则判断的是，npm和node已经成功安装，只是系统无法找到。因此考虑通过如下命令将npm和node关联到系统中：sudo ln -s /usr/local/bin/node   /bin/node当然，遇到类似安装了...
+							我的hexo本地服务器是一块树莓派，系统是Linux raspberrypi 4.19.97-v7l+，系统默认是带有git，npm和node的。但是我发现第一次通过npm安装hexo的时候居然失败了，于是我决定卸载后重装。结果再重新安装的时候发现尽管已经输入了npm或者node，但系统始终无法找到此命令（无回馈），也并没有报错。唯一可以通过linux系统“无返回即为正确”原则判断的是，npm和node已经成功安装，只是系统无法找到。因此考虑通过如下命令将npm和node关联到系统中：
+1sudo ln -s /usr/local/bin/node   /bin/node
+当然，遇到类似...
 						
 					</div>
 					
@@ -248,7 +459,7 @@
 
 2020-03-19  设置分类+标签
 
-新建分类页、标签页:hexo new page categories
+新建分类页、标签页:1hexo new page categories
 在新建的特定页中的index中加入categories，layout等标志
 
 2020-03-28
@@ -257,8 +468,7 @@
 增加icon
 增加主页图
 
-
-曾经出...
+202...
 						
 					</div>
 					
@@ -307,7 +517,15 @@
 
 					<div class="post-content">
 						
-							尝试一点新内容！在vps的ip被封之后（换了ip又被封了），终于选择了域名+github pages了。博客打算按照每周末更新的进度，更新内容包括： [ ] 博客框架更新 [ ] 树莓派应用更新 [ ] 专业学习技能更新 [ ] 阅读书籍更新 [ ] 阅读文献及翻译更新
+							尝试一点新内容！在vps的ip被封之后（换了ip又被封了），终于选择了域名+github pages了。博客打算按照每周末更新的进度，更新内容包括：
+
+博客框架更新
+树莓派应用更新
+专业学习技能更新
+阅读书籍更新
+阅读文献及翻译更新
+研究中的进展
+
 
 						
 					</div>
